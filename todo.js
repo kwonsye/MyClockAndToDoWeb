@@ -5,9 +5,6 @@ const toDoInput = toDoform.querySelector("input"),
 const TODOS_LS = 'toDos';
 let toDos = [];
 
-function filter(toDo){
-    return toDo.id === 1;
-}
 
 function deleteToDo(event){
     //console.log(event);
@@ -39,10 +36,27 @@ function handleSubmit(event){
     toDoInput.value="";
 }
 
+function findTodosMaxID(){
+    let maxID = 0; //const로 하면 안된다. 이유는? const는 상수용, let은 변수용 / 왠만하면 var보단 let을 쓰자!
+    toDos.forEach((todo) => {
+        if(maxID <= todo.id){
+            maxID = todo.id;
+        }
+    })
+
+    return maxID;
+}
+
 function paintToDo(text){
     const li = document.createElement("li");
     const delBtn = document.createElement("button");
-    const newID = toDos.length+1;
+    //중복 ID가 생길 수 있고, localStorage에서 같은 id의 JSON이 함께 지워지는 버그 생김
+    //const newID = toDos.length+1;
+    
+    //해결!
+    //가장 maximum ID를 가지고 와서 그것보다 +1인 ID를 부여해줘야함
+    const maxID = findTodosMaxID();
+    const newID = maxID + 1;
 
     delBtn.innerText = "✔️";
     delBtn.addEventListener("click",deleteToDo);
