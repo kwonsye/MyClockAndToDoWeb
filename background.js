@@ -9,7 +9,7 @@ function paintImage(imgNumber){
     body.appendChild(image); //body안에 생성한 image속성 child를 붙인다.
 }
 function getRandom(){
-    const number = Math.floor(Math.random()*IMG_COUNT+1); //1~3까지 랜덤넘버 생성
+    const number = Math.floor(Math.random()*IMG_COUNT+1); //1~8까지 랜덤넘버 생성
     return number;
 }
 

@@ -66,7 +66,7 @@ function loadCoords(){
 
 function init(){
     loadCoords();
-    setInterval(loadCoords,2000);
+    setInterval(loadCoords,2000); //2초에 한번씩 getWeather() call하면서 WeatherStr의 innerText를 바꿔줌
 }
 
 init();
